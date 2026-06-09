@@ -44,9 +44,11 @@ function M.toggle()
 end
 
 function M.setup(opts)
-	for key, value in pairs(opts) do
-		if M.opts[key] then
-			M.opts[key] = value
+	if opts then
+		for key, value in pairs(opts) do
+			if M.opts[key] then
+				M.opts[key] = value
+			end
 		end
 	end
 
