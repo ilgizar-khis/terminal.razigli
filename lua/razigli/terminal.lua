@@ -38,9 +38,9 @@ function M.toggle()
 	if not M.buffer or not vim.api.nvim_buf_is_valid(M.buffer) then
 		vim.cmd("term")
 		M.buffer = vim.api.nvim_win_get_buf(M.win)
+		vim.opt_local.buflisted = false
 	end
 
-	vim.opt_local.buflisted = false
 end
 
 function M.setup(opts)
