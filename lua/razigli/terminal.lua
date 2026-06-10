@@ -1,5 +1,5 @@
 local M = {
-	buffer = nil,
+	buf = nil,
 	win = nil,
 }
 
@@ -10,9 +10,9 @@ M.params = {
 }
 
 function M.toggle()
-	local buffer = vim.api.nvim_create_buf(false, true)
-	if M.buffer and vim.api.nvim_buf_is_valid(M.buffer) then
-		buffer = M.buffer
+	local buf = vim.api.nvim_create_buf(false, true)
+	if M.buf and vim.api.nvim_buf_is_valid(M.buf) then
+		buf = M.buf
 	end
 
 	local col = math.floor((vim.api.nvim_get_option("columns") - M.params.width) / 2)
@@ -32,12 +32,12 @@ function M.toggle()
 		vim.api.nvim_win_close(M.win, false)
 		M.win = nil
 	else
-		M.win = vim.api.nvim_open_win(buffer, true, opts)
+		M.win = vim.api.nvim_open_win(buf, true, opts)
 	end
 
-	if not M.buffer or not vim.api.nvim_buf_is_valid(M.buffer) then
+	if not M.buf or not vim.api.nvim_buf_is_valid(M.buf) then
 		vim.cmd("term")
-		M.buffer = vim.api.nvim_win_get_buf(M.win)
+		M.buf = vim.api.nvim_win_get_buf(M.win)
 		vim.opt_local.buflisted = false
 	end
 end
