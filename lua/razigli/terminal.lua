@@ -42,9 +42,9 @@ function M.toggle()
 	end
 end
 
-function M.setup(opts)
-	if opts then
-		for key, value in pairs(opts) do
+function M.setup(params)
+	if params then
+		for key, value in pairs(params) do
 			if M.params[key] then
 				M.params[key] = value
 			end
