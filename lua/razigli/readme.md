@@ -1,7 +1,7 @@
 # my simple plugin for working with the terminal in neovim
 
 ## commands
-- Terminal - command to toggle terminal.
+- Terminal -- command to toggle terminal.
 
 ## functions
 - toggle() -- function to toggle terminal.
@@ -10,6 +10,21 @@
 - width: number = 160,
 - height: number = 40,
 - border: string = "single"
+
+## variables
+- win: number -- terminal window id.
+    - if not nil -> terminal is open.
+- buf: number -- terminal buffer id.
+    - if not nil -> the terminal has been opened at least once
+```lua
+vim.api.nvim_create_user_command("TermInfo", function()
+	local buf = terminal.buf or "does't exist"
+	local win = terminal.win or "does't exist"
+
+	vim.notify("buf: " .. buf .. ", win: " .. win)
+end, {})
+```
+
 
 ## usage example: vim.pack
 ```lua
