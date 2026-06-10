@@ -3,7 +3,7 @@ local M = {
 	win = nil,
 }
 
-M.opts = {
+M.params = {
 	width = 160,
 	height = 40,
 	border = "single",
@@ -15,17 +15,17 @@ function M.toggle()
 		buffer = M.buffer
 	end
 
-	local col = math.floor((vim.api.nvim_get_option("columns") - M.opts.width) / 2)
-	local row = math.floor((vim.api.nvim_get_option("lines") - M.opts.height) / 2)
+	local col = math.floor((vim.api.nvim_get_option("columns") - M.params.width) / 2)
+	local row = math.floor((vim.api.nvim_get_option("lines") - M.params.height) / 2)
 
 	local opts = {
 		relative = "editor",
-		width = M.opts.width,
-		height = M.opts.height,
+		width = M.params.width,
+		height = M.params.height,
 		col = col,
 		row = row,
 		style = "minimal",
-		border = M.opts.border,
+		border = M.params.border,
 	}
 
 	if M.win and vim.api.nvim_win_is_valid(M.win) then
@@ -40,14 +40,13 @@ function M.toggle()
 		M.buffer = vim.api.nvim_win_get_buf(M.win)
 		vim.opt_local.buflisted = false
 	end
-
 end
 
 function M.setup(opts)
 	if opts then
 		for key, value in pairs(opts) do
-			if M.opts[key] then
-				M.opts[key] = value
+			if M.params[key] then
+				M.params[key] = value
 			end
 		end
 	end
